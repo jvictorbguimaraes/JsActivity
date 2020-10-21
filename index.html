@@ -1,0 +1,66 @@
+<html>
+    <body class="center" id="content">
+        <div>
+            <h1 id="title" onclick='changeTextColor(this)'>Click me to change my color</h1>
+            <h2 id="background">Click me to change the background color</h2>
+        </div>
+        <div>
+            <h2>Hover over the image to see what it is</h2>
+            <img id="image" alt="" src="https://www.thesprucepets.com/thmb/sfuyyLvyUx636_Oq3Fw5_mt-PIc=/3760x2820/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg"/>
+            <button id="imageChange">Change Image</button>
+        </div>
+    </body>
+    <script>
+        var currentImage = "Dog";
+
+        document.getElementById("title").addEventListener("click", function(event){
+            document.getElementById("title").style.color = getColor();
+        });
+
+        document.getElementById("background").addEventListener("click", function(event){
+            document.getElementById("content").style.backgroundColor = getColor();
+        });
+
+        function getColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        document.getElementById("image").addEventListener("mouseover", function(event){
+            alert("It is a "+ currentImage);
+        });
+
+        document.getElementById("imageChange").addEventListener("click", function(event){
+            if(currentImage == "Dog"){
+                document.getElementById("image").src = 'https://lh3.googleusercontent.com/proxy/3XZFZ8F5QDSH3dTF8WVuFGuRA2MPcgnz5C6MQCNAYxNX78CQm-GQlxPxdghIggaC8K0dZFyP0lfVWLSYy4HGQmuHzHaEcWy3NbMslg8h2dISYCGAYkpEtSfeLfywleeJ-g';
+                currentImage = "Bear";
+            }else{
+                document.getElementById("image").src = 'https://www.thesprucepets.com/thmb/sfuyyLvyUx636_Oq3Fw5_mt-PIc=/3760x2820/smart/filters:no_upscale()/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg';
+                currentImage = "Dog";
+            }
+        });
+    </script>
+</html>
+
+<style>
+    #image {
+        width: 400;
+    }
+    h1 {
+        user-select: none;
+        font-size: 4em;
+    }
+    #background {
+        user-select: none;        
+        margin-bottom: 100px;
+    }
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+</style>
